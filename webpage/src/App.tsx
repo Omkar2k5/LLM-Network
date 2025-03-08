@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-type Message = { role: 'user' | 'assistant'; content: string };
-import { Brain, Send, User, Bot, Loader2 } from 'lucide-react';
-import { sendMessageToLLM } from './api/llm';
+import { Brain, Send, Bot, Loader2 } from 'lucide-react';
+import { sendMessageToLLM, Message } from './api/llm';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
   const [conversation, setConversation] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [sessionId, setSessionId] = useState<string | undefined>();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -28,11 +28,12 @@ function App() {
     setIsTyping(true);
     
     try {
-      const response = await sendMessageToLLM(inputValue, conversation);
+      const response = await sendMessageToLLM(inputValue, conversation, sessionId);
       setIsTyping(false);
+      setSessionId(response.sessionId);
       setConversation([
         ...newConversation,
-        { role: 'assistant' as const, content: response }
+        { role: 'assistant' as const, content: response.content }
       ]);
     } catch (error) {
       console.error('Error getting LLM response:', error);
@@ -59,6 +60,11 @@ function App() {
           <Brain className="h-7 w-7 text-blue-400" />
           <h1 className="text-4xl font-bold text-white">AI NETWORK</h1>
         </div>
+        {sessionId && (
+          <div className="text-center mt-2 text-gray-400 text-sm">
+            Session ID: {sessionId}
+          </div>
+        )}
       </div>
 
       {/* Main Chat Area */}

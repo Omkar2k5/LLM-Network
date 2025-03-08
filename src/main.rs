@@ -2,6 +2,7 @@ mod udp;
 mod ip;
 mod tcp;
 mod llm;
+mod utils;
 
 use std::collections::HashSet;
 use std::sync::Arc;

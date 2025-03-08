@@ -1,0 +1,38 @@
+{
+  "sessions": [
+    {
+      "id": "2ad932c9-e511-4fdb-b277-29808d62f6d8",
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello",
+          "timestamp": "2025-03-08T13:03:14.176228600Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! How can I assist you today?",
+          "timestamp": "2025-03-08T13:03:14.176229200Z"
+        }
+      ],
+      "created_at": "2025-03-08T13:03:14.176111600Z",
+      "updated_at": "2025-03-08T13:03:14.176229300Z"
+    },
+    {
+      "id": "bbedaf47-e8b0-4efc-b96b-03c2051938f0",
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello world program in python",
+          "timestamp": "2025-03-08T13:03:19.954175700Z"
+        },
+        {
+          "role": "assistant",
+          "content": "Sure! Here's a simple \"Hello World\" program in Python:\n\n```python\nprint(\"Hello, World!\")\n```\n\nWhen you run this program, it will display the text \"Hello, World!\" on the screen. This is often the first program people write when learning to code in Python or any other programming language.",
+          "timestamp": "2025-03-08T13:03:19.954176500Z"
+        }
+      ],
+      "created_at": "2025-03-08T13:03:19.954175100Z",
+      "updated_at": "2025-03-08T13:03:19.954176600Z"
+    }
+  ]
+}

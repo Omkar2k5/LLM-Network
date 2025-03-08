@@ -7,21 +7,27 @@ export interface Message {
   content: string;
 }
 
-interface OllamaResponse {
-  message: {
-    role: string;
-    content: string;
-  };
-  context?: number[];
+interface ChatResponse {
+  message: Message;
+  session_id: string;
 }
 
-export async function sendMessageToLLM(message: string, conversation: Message[] = []): Promise<string> {
+export async function sendMessageToLLM(
+  message: string, 
+  conversation: Message[] = [], 
+  sessionId?: string
+): Promise<{ content: string; sessionId: string }> {
   try {
-    const response = await axios.post<OllamaResponse>(`${API_BASE_URL}/chat`, {
+    const response = await axios.post<ChatResponse>(`${API_BASE_URL}/chat`, {
       message,
       conversation,
+      session_id: sessionId,
     });
-    return response.data.message.content;
+    
+    return {
+      content: response.data.message.content,
+      sessionId: response.data.session_id,
+    };
   } catch (error) {
     console.error('Error sending message to LLM:', error);
     throw new Error('Failed to get response from LLM');
