@@ -26,8 +26,11 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# Project specific
 database.db
 /tmp
+/git-filter-repo/
+git-filter-repo/
 
 # Additional files to exclude
 /webpage/node_modules/
